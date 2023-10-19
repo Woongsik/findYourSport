@@ -1,5 +1,5 @@
 # FIND YOUR SPORTS 
-This is a project using MERN enviroment (MongoDB, Express, React, Node)
+Deveoping a micro service that find your sport (MongoDB, Express, React, Node)
 
 ## Requirements
 
