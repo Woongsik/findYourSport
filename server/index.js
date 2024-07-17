@@ -20,28 +20,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname+"/Publichtml"));
 
+const mongodb_url = process.env.MONGODB_URL;
+const secret = process.env.MONGODB_URL;
 
-//mongodb connection
-mongoose.connect("mongodb://localhost/sportsEventDb").then(
+mongoose.connect(mongodb_url).then(
 	() => {console.log("Connection to mongoDB successful")},
 	(error) => {console.log("Connection to mongoDB failed:"+error)}
 );
 
-/*
-//database connection
-let mongourl = 'mongodb+srv://shoppinglist:shoppingpassword@cluster0-9li3p.mongodb.net/test?retryWrites=true'
-
-mongoose.connect(mongourl, {dbName:"shoppinglist", useNewUrlParser: true }).then(
-    () => {console.log("Connection to mongoDB successful")},
-    (error) => {console.log("Connection to mongoDB failed:"+error)}
-);
-*/
-
-
 app.use(session({
     name:"sportSession-id",
     resave:false,
-    secret:"myBestSecret",
+    secret: secret,
     saveUninitialized:false,
     cookie:{maxAge:1000*60*60*24},
 	store: new MongoStore({
